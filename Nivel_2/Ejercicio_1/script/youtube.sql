@@ -250,7 +250,8 @@ CREATE TABLE `usuario` (
   `Sexo` enum('Masculino','Femenino','Otro') NOT NULL,
   `Pais` varchar(100) NOT NULL,
   `Codigo_Postal` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_Usuario`)
+  PRIMARY KEY (`ID_Usuario`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -283,10 +284,10 @@ CREATE TABLE `video` (
   `Numero_Dislikes` int(11) DEFAULT '0',
   `Estado` enum('Público','Oculto','Privado') NOT NULL,
   `Fecha_Publicacion` datetime NOT NULL,
-  `ID_Usuario` int(11) NOT NULL,
+  `ID_canal` int(11) NOT NULL,
   PRIMARY KEY (`ID_Video`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  CONSTRAINT `ID_Usuario` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuario` (`ID_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `id_canal_idx` (`ID_canal`),
+  CONSTRAINT `id_canal` FOREIGN KEY (`ID_canal`) REFERENCES `canal` (`ID_Canal`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -334,4 +335,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-08 12:48:49
+-- Dump completed on 2024-10-07  0:11:59
